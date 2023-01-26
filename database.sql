@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `users`
+(
+    `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    `email` VARCHAR(255) UNIQUE NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS `tasks`
+(
+    `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    `text` VARCHAR(255) NOT NULL,
+    `is_important` INT(1) DEFAULT 0,
+    `is_completed` INT(1) DEFAULT 0,
+    `created_by` INTEGER NOT NULL,
+    `date` DATE NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NOT NULL,
+    CONSTRAINT FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+);

@@ -1,0 +1,18 @@
+{% set title = "Авторизация" %}
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h1 style="text-align: center">Вход</h1>
+            <form action="/auth/handle" id="auth__form">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Введите вашу почту</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

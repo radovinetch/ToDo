@@ -1,0 +1,88 @@
+{% set title = "ToDo" %}
+{% extends "base.twig" %}
+
+{% block head %}
+<link href="/css/style.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <form id="create__task">
+        <label for="text">Текст задачи</label>
+        <textarea name="text" class="form-control" id="text"></textarea>
+        <br/>
+        <label for="date">Дата создание задачи</label>
+        <input type="date" class="form-control" id="date">
+        <br/>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="is_important">
+            <label class="form-check-label" for="is_important">
+                Важное (если да - отметить)
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">
+            Создать задачу
+        </button>
+    </form>
+
+    <div id="tasks">
+        <h4>Загрузка...</h4>
+        <div class="spinner-border" role="status"></div>
+    </div>
+
+    <nav class="mt-3">
+        <ul class="pagination" id="pagination_ul">
+
+        </ul>
+    </nav>
+
+    <div class="modal" id="editTaskModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Редактировать задачу</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="edit__task">
+                    <div class="modal-body">
+                        <input type="hidden" id="task_id">
+                        <div class="mb-3">
+                            <label for="task_text" class="form-label">Текст задачи</label>
+                            <textarea id="task_text" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="task_date" class="form-label">Дата</label>
+                            <input type="date" class="form-control" id="task_date">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary btn-save">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Подтвердите удаление</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <form id="task_delete_form">
+                        <input type="hidden" id="task_delete_id" name="id">
+                        <button type="submit" class="btn btn-danger">Удалить задачу</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
